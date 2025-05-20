@@ -16,5 +16,6 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
 
         $this->call([PostsTableSeeder::class]);
+        //$this->call([ProjectSeeder::class]);
     }
 }
