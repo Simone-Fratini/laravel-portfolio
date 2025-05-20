@@ -24,6 +24,9 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::resource('projects', ProjectController::class)->parameters([
         'projects' => 'project'
     ]);
+    Route::get('projects/success', function () {
+        return view('admin.projects.success');
+    })->name('projects.success');
 });
 
 

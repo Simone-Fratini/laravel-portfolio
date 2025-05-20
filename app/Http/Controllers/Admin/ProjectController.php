@@ -22,7 +22,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.projects.create');
     }
 
     /**
@@ -30,8 +30,22 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validazione dei dati
+        $data = $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'start_date' => 'required|date',
+            'end_date' => 'nullable|date|after_or_equal:start_date',
+        ]);
+
+
+        // Salvataggio nel database
+        Project::create($data);
+
+        // Redirect con messaggio di successo
+        return redirect()->route('admin.projects.success');
     }
+
 
     /**
      * Display the specified resource.
@@ -47,7 +61,8 @@ class ProjectController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $project = Project::findOrFail($id);
+        return view('admin.projects.edit', compact('project'));
     }
 
     /**
@@ -55,7 +70,18 @@ class ProjectController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $project = Project::findOrFail($id);
+
+        $data = $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'start_date' => 'required|date',
+            'end_date' => 'nullable|date|after_or_equal:start_date',
+        ]);
+
+        $project->update($data);
+
+        return redirect()->route('admin.projects.index')->with('success', 'Project updated successfully');
     }
 
     /**
@@ -63,6 +89,9 @@ class ProjectController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $project = Project::findOrFail($id);
+        $project->delete();
+
+        return redirect()->route('admin.projects.index')->with('success', 'Project deleted successfully');
     }
 }
