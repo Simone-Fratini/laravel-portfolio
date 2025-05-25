@@ -70,6 +70,27 @@
                             @enderror
                         </div>
 
+                        <!-- Type Selection -->
+                        <div>
+                            <label for="type_id" class="block text-sm font-medium text-gray-700 mb-1">
+                                Type
+                            </label>
+                            <select name="type_id" 
+                                    id="type_id" 
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                    required>
+                                <option value="">Select a type</option>
+                                @foreach($types as $type)
+                                    <option value="{{ $type->id }}" {{ old('type_id', $project->type_id) == $type->id ? 'selected' : '' }}>
+                                        {{ $type->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('type_id')
+                                <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                            @enderror
+                        </div>
+
                         <!-- Description -->
                         <div>
                             <label for="description" class="block text-sm font-medium text-gray-700 mb-1">

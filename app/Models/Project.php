@@ -11,6 +11,7 @@ class Project extends Model
         'description',
         'start_date',
         'end_date',
+        'type_id'
     ];
 
     public function type()
