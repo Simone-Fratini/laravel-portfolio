@@ -12,4 +12,9 @@ class Project extends Model
         'start_date',
         'end_date',
     ];
+
+    public function type()
+    {
+        return $this->belongsTo(Type::class);
+    }
 }

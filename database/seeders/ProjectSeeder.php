@@ -20,6 +20,7 @@ class ProjectSeeder extends Seeder
             $project->description = $faker->paragraph(5);
             $project->start_date = $faker->date(); // data casuale
             $project->end_date = $faker->optional()->date(); // a volte null
+            $project->type_id = $faker->numberBetween(0, 5);
             $project->save();
         }
     }
