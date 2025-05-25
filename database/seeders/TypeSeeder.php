@@ -14,7 +14,7 @@ class TypeSeeder extends Seeder
      */
     public function run(Faker $Faker): void
     {
-        $typeArray = ["javascript", "php", "html", "laravel", "react"];
+        $typeArray = ["personal", "learning", "fun", "usefull", "utility"];
         for ($i = 0; $i < 5; $i++) {
             $newType = new Type();
             $newType->name = $typeArray[$i];
