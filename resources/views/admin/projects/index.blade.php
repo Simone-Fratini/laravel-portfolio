@@ -27,6 +27,11 @@
                     <div class="p-6">
                         <h2 class="text-xl font-semibold text-gray-800 mb-2">{{ $project->title }}</h2>
                         <div class=" inline-block font-bold rounded-lg bg-black text-white w-auto px-3">{{$project->type->name}}</div>
+                        @foreach ($project->technologies as $technology)
+                            <div class="inline-block font-bold rounded-lg bg-orange-400 text-white w-auto px-3 py-1 mr-2 mb-2">
+                                {{ $technology->name }}
+                            </div>
+                        @endforeach
                         <p class="text-gray-600 mb-4">{{ Str::limit($project->description, 100) }}</p>
                         <div class="flex justify-between items-center">
                             <span class="text-sm text-gray-500">
