@@ -91,6 +91,31 @@
                             @enderror
                         </div>
 
+                        <!-- Technologies -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">
+                                Technologies
+                            </label>
+                            <div class="space-y-2">
+                                @foreach($technologies as $technology)
+                                    <div class="flex items-center">
+                                        <input type="checkbox" 
+                                               id="technology_{{ $technology->id }}" 
+                                               name="technologies[]"
+                                               value="{{ $technology->id }}"
+                                               {{ $project->technologies->contains($technology->id) ? 'checked' : '' }}
+                                               class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                                        <label for="technology_{{ $technology->id }}" class="ml-2 text-sm text-gray-700">
+                                            {{ $technology->name }}
+                                        </label>
+                                    </div>
+                                @endforeach
+                            </div>
+                            @error('technologies')
+                                <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                            @enderror
+                        </div>
+
                         <!-- Description -->
                         <div>
                             <label for="description" class="block text-sm font-medium text-gray-700 mb-1">
